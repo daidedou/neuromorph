@@ -9,13 +9,16 @@ function create_remeshed_dataset(shapes_dir)
     if ~isfolder(out_dir); mkdir(out_dir); end
 
     files = dir(fullfile(shapes_dir, "*.mat"));
-
-    for i = 1:length(files)
-        fprintf(" Processing %d of %d\n", i, length(files));
-        file_in = fullfile(shapes_dir, files(i).name);
+    files_new = [];
+    for i = progress(1:length(files))
+        %fprintf(" Processing %d of %d\n", i, length(files));
         file_out = fullfile(out_dir, files(i).name);
         if exist(file_out); continue; end
-
+        files_new = [files_new, files(i)];
+    end
+    for i = progress(1:length(files_new))
+        file_in = fullfile(shapes_dir, files(i).name);
+        file_out = fullfile(out_dir, files(i).name);
         [idx_arr, triv_arr] = create_remeshed_collection(file_in);
 
         save(file_out, "idx_arr", "triv_arr");

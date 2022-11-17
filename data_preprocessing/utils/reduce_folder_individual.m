@@ -9,8 +9,8 @@ function folder_out = reduce_folder_individual(shapes_dir, num_vert_reduced)
     folder_out = fullfile(shapes_dir, "sub_" + string(num_vert_reduced));
     if ~exist(folder_out, 'file'); mkdir(folder_out); end
 
-    for i = 1:length(files)
-        fprintf(" Processing %d of %d\n", i, length(files));
+    for i = progress(1:length(files))
+        %fprintf(" Processing %d of %d\n", i, length(files));
 
         file_curr = fullfile(shapes_dir, files(i).name);
         [~, name, ~] = fileparts(file_curr);

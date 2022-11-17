@@ -9,8 +9,8 @@ function compute_dist_matrices(shapes_dir)
     matrices_dir = fullfile(shapes_dir, "distance_matrix");
     if ~isfolder(matrices_dir); mkdir(matrices_dir); end
 
-    for i = 1:numel(files)
-        fprintf(" Processing %d of %d\n", i, numel(files))
+    for i = progress(1:numel(files))
+        %fprintf(" Processing %d of %d\n", i, numel(files))
         if exist(fullfile(matrices_dir, files(i).name)), continue; end
 
         S = load(fullfile(shapes_dir, files(i).name));

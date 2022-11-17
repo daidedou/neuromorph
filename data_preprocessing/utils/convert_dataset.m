@@ -9,9 +9,9 @@ function folder_out = convert_dataset(folder_in, shape_file_ext)
     folder_out = fullfile(folder_in, "mat/");
     if ~isfolder(folder_out); mkdir(folder_out); end
 
-    for i = 1:length(files)
+    for i = progress(1:length(files))
 
-        fprintf(" Processing %d of %d\n", i, length(files));
+        %fprintf(" Processing %d of %d\n", i, length(files));
 
         file_in = fullfile(folder_in, files(i).name);
         [~, ~, file_in_ext] = fileparts(file_in);

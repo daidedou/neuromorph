@@ -8,9 +8,9 @@ function [idx_arr, triv_arr] = create_remeshed_collection(file_in, res_array)
     S = load(file_in);
 
     if ~exist("res_array", "var")
-        res_array = 200:2000;
+        res_array_c = 200:2000;
     end
-
+    res_array = datasample(res_array_c, 20, 'Replace', false);
     idx_arr = cell(length(res_array), 1);
     triv_arr = cell(length(res_array), 1);
 
